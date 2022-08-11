@@ -1,0 +1,64 @@
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration config
+@inject Microsoft.Extensions.Options.IOptions<SocialLoginSettings> socialLoginSettings
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row mb-2">
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-item-start">
+                <strong class="d-inline-block mb-2 text-primary">SendGrid</strong>
+                <div class="mb-1 text-muted">@ViewBag.SendGridKey</div>
+            </div>
+        </div>
+    </div>    
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-item-start">
+                <strong class="d-inline-block mb-2 text-primary">Twilio from Controller</strong>
+                <div class="mb-1 text-muted">@ViewBag.TwilioAuthToken</div>
+                <div class="mb-1 text-muted">@ViewBag.TwilioAccountSid</div>
+                <div class="mb-1 text-muted">@ViewBag.TwilioPhoneNumber</div>
+            </div>
+        </div>
+    </div>     
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-item-start">
+                <strong class="d-inline-block mb-2 text-primary">Twilio from Inject</strong>
+                <div class="mb-1 text-muted">@config.GetSection("Twilio:AuthToken").Value</div>
+                <div class="mb-1 text-muted">@config.GetSection("Twilio:AccountSid").Value</div>
+            </div>
+        </div>
+    </div>    
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-item-start">
+                <strong class="d-inline-block mb-2 text-primary">Level Assignment</strong>
+                <div class="mb-1 text-muted">@ViewBag.BottomLevelSetting</div>
+            </div>
+        </div>
+    </div>    
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-item-start">
+                <strong class="d-inline-block mb-2 text-primary">Social Login Settings</strong>
+                <div class="mb-1 text-muted">@ViewBag.SocialLoginEnabled</div>
+                <div class="mb-1 text-muted">@ViewBag.FacebookSettingsKey</div>
+                <div class="mb-1 text-muted">@socialLoginSettings.Value.FacebookSettings.Value</div>
+                <div class="mb-1 text-muted">@ViewBag.GoogleSettingsKey</div>
+                <div class="mb-1 text-muted">@socialLoginSettings.Value.GoogleSettings.Value</div>
+            </div>
+        </div>
+    </div>    
+    <div class="col-md-6">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-item-start">
+                <strong class="d-inline-block mb-2 text-primary">Connection Strings</strong>
+                <div class="mb-1 text-muted">@ViewBag.ConnectionStrings</div>
+            </div>
+        </div>
+    </div>
+</div>
